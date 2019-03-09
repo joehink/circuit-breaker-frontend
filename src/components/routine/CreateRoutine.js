@@ -23,9 +23,8 @@ class CreateRoutine extends Component {
     return exercises.map(exercise => {
       // return a div with image and name for each exercise
       return (
-        <div onClick={() => this.selectExercise(exercise)}>
+        <div key={exercise.name} onClick={() => this.selectExercise(exercise)}>
           <img
-            key={exercise.name}
             src={exercise.image}
             alt={exercise.name}
             width={200}
