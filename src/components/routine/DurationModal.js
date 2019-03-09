@@ -2,7 +2,9 @@ import React, { Component } from "react";
 
 class DurationModal extends Component {
   handleSubmit = (event) => {
+    // prevent form from refreshing page
     event.preventDefault();
+    // set duration of selected exercise
     this.props.setDuration()
   }
   render() {

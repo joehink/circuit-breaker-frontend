@@ -1,5 +1,8 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import exercises from "../../data/exercises";
+
+import { setWorkout } from "../../actions";
 
 import DurationModal from "./DurationModal";
 
@@ -16,7 +19,9 @@ class CreateRoutine extends Component {
     }
   }
   renderExercises = () =>  {
+    // map through imported exercises array
     return exercises.map(exercise => {
+      // return a div with image and name for each exercise
       return (
         <div onClick={() => this.selectExercise(exercise)}>
           <img
@@ -32,6 +37,8 @@ class CreateRoutine extends Component {
     })
   }
   selectExercise = (exercise) => {
+    // append exercise to end of selectedExercises array
+    // set showDurationModal to true
     this.setState({
       routine: {
         ...this.state.routine,
@@ -41,12 +48,15 @@ class CreateRoutine extends Component {
     })
   }
   isSelected = (exercise) => {
+    //if one of the selectedExercises has the same name as exercise, return true
     return this.state.routine.selectedExercises.some(selected => {
       return selected.name === exercise.name
     })
   }
   renderDurationModal = () => {
+    // if showDurationModal is true
     if (this.state.showDurationModal) {
+      // render DurationModal
       return (
         <DurationModal
           duration={this.state.durationToSet}
@@ -60,8 +70,10 @@ class CreateRoutine extends Component {
     this.setState(prevState => {
       const { selectedExercises } = prevState.routine;
       const { durationToSet } = prevState;
-
+      // set duration of the last selected exercise equal to durationToSet
       selectedExercises[selectedExercises.length - 1].duration = durationToSet;
+      // set selectedExercises to state
+      // reset durationToSet and showDurationModal
       return {
         ...prevState,
         routine: { ...prevState.routine, selectedExercises },
@@ -74,7 +86,18 @@ class CreateRoutine extends Component {
     this.setState({ durationToSet: parseInt(event.target.value) })
   }
   handleChange = (event) => {
-    this.setState({ name: event.target.value })
+    this.setState({
+      routine: {
+        ...this.state.routine,
+        name: event.target.value
+      }
+    })
+  }
+  handleStart = () => {
+    // set routine from state as current workout in redux
+    this.props.setWorkout(this.state.routine);
+    // navigate to '/workout'
+    this.props.history.push('/workout')
   }
   render() {
     return (
@@ -85,12 +108,13 @@ class CreateRoutine extends Component {
           onChange={this.handleChange}
         />
         {this.renderExercises()}
-        <button>Start Routine</button>
+        <button onClick={this.handleStart}>
+          Start Routine
+        </button>
         {this.renderDurationModal()}
-
       </div>
     )
   }
 }
 
-export default CreateRoutine;
+export default connect(null, { setWorkout })(CreateRoutine);
