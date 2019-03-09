@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 
-class CreateRoutine extends Component {
+class Workout extends Component {
   render() {
     return (
       <div>
-        Create
+        Hey Dude
       </div>
     )
   }
 }
 
-export default CreateRoutine;
+export default Workout;
