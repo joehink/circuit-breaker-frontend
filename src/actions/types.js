@@ -6,3 +6,13 @@ export const CLEAR_WORKOUT = "CLEAR_WORKOUT";
 export const RESET_CURRENT_WORKOUT = "RESET_CURRENT_WORKOUT";
 export const BEGIN_WORKOUT = "BEGIN_WORKOUT";
 export const PAUSE_WORKOUT = "PAUSE_WORKOUT";
+
+
+export const SIGN_UP = "SIGN_UP";
+export const SIGN_UP_SUCCESS = "SIGN_UP_SUCCESS";
+export const SIGN_UP_FAILURE = "SIGN_UP_FAILURE";
+
+
+export const LOG_IN = "LOG_IN";
+export const LOG_IN_SUCCESS = "LOG_IN_SUCCESS";
+export const LOG_IN_FAILURE = "LOG_IN_FAILURE";
