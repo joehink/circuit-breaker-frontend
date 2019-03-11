@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import Landing from "./components/Landing";
-import Workout from "./components/Workout";
+import Workout from "./components/workout/Workout";
 import CreateRoutine from "./components/routine/CreateRoutine";
 
 class App extends Component {

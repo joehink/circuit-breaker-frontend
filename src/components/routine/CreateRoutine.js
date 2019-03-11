@@ -28,7 +28,28 @@ class CreateRoutine extends Component {
             src={exercise.image}
             alt={exercise.name}
             width={200}
-            className={this.isSelected(exercise) ? "selected" : "unselected"}
+          />
+          <p>{exercise.name}</p>
+        </div>
+      )
+    })
+  }
+  renderSelectedExercises = () =>  {
+    // map through selected exercises array
+    return this.state.routine.selectedExercises.map((exercise, index) => {
+      // return a div with image and name for each exercise
+      return (
+        <div
+          key={exercise.name}
+          onDragOver={() => this.onDragOver(index)}
+        >
+          <img
+            onDragStart={e => this.onDragStart(e, index)}
+            onDragEnd={this.onDragEnd}
+            draggable
+            src={exercise.image}
+            alt={exercise.name}
+            width={200}
           />
           <p>{exercise.name}</p>
         </div>
@@ -44,12 +65,6 @@ class CreateRoutine extends Component {
         selectedExercises: [...this.state.routine.selectedExercises, exercise]
       },
       showDurationModal: true
-    })
-  }
-  isSelected = (exercise) => {
-    //if one of the selectedExercises has the same name as exercise, return true
-    return this.state.routine.selectedExercises.some(selected => {
-      return selected.name === exercise.name
     })
   }
   renderDurationModal = () => {
@@ -98,6 +113,39 @@ class CreateRoutine extends Component {
     // navigate to '/workout'
     this.props.history.push('/workout')
   }
+  onDragStart = (event, index) => {
+    // set draggedItem equal to the exercise that is being dragged
+    this.draggedItem = this.state.routine.selectedExercises[index];
+    event.dataTransfer.effectAllowed = "move";
+    event.dataTransfer.setData("text/html", event.target.parentNode);
+    event.dataTransfer.setDragImage(event.target.parentNode, 100, 100);
+  };
+  onDragOver = index => {
+    const draggedOverItem = this.state.routine.selectedExercises[index];
+
+    // if the item is dragged over itself, ignore
+    if (this.draggedItem === draggedOverItem) {
+      return;
+    }
+
+    // filter out the currently dragged item
+    let selected = this.state.routine.selectedExercises.filter(exercise => {
+      return exercise !== this.draggedItem
+    });
+
+    // add the dragged item after the dragged over item
+    selected.splice(index, 0, this.draggedItem);
+
+    this.setState({
+      routine: {
+        ...this.state.routine,
+        selectedExercises: selected
+      }
+    });
+  };
+  onDragEnd = () => {
+    this.draggedItem = null;
+  };
   render() {
     return (
       <div>
@@ -107,6 +155,13 @@ class CreateRoutine extends Component {
           onChange={this.handleChange}
         />
         {this.renderExercises()}
+        <div
+          // onDragOver={(e)=>this.onDragOver(e)}
+          // onDrop={(e)=>{this.onDrop(e, "selected")}}
+        >
+          <h2>Selected Exercises</h2>
+          {this.renderSelectedExercises()}
+        </div>
         <button onClick={this.handleStart}>
           Start Routine
         </button>

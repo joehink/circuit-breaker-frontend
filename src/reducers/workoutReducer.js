@@ -2,14 +2,20 @@ import {
   SET_WORKOUT,
   INCREMENT_INDEX,
   DECREMENT_TIMER,
-  WORKOUT_COMPLETED
+  WORKOUT_COMPLETED,
+  CLEAR_WORKOUT,
+  RESET_CURRENT_WORKOUT,
+  BEGIN_WORKOUT,
+  PAUSE_WORKOUT
 } from "../actions/types";
 
 const INITIAL_STATE = {
   exerciseIndex: 0,
   timer: 30,
   name: "",
-  selectedExercises: []
+  selectedExercises: [],
+  workoutOver: false,
+  workoutInProgress: false
 }
 
 export default function(state = INITIAL_STATE, action) {
@@ -33,7 +39,30 @@ export default function(state = INITIAL_STATE, action) {
       }
     case WORKOUT_COMPLETED:
       return {
-        ...INITIAL_STATE
+        ...state,
+        workoutOver: true,
+      }
+    case CLEAR_WORKOUT:
+      return {
+          ...INITIAL_STATE
+      }
+    case RESET_CURRENT_WORKOUT:
+      return {
+        ...state,
+        timer: state.selectedExercises[0].duration,
+        exerciseIndex: 0,
+        workoutOver: false,
+        workoutInProgress: false
+      }
+    case BEGIN_WORKOUT:
+      return {
+        ...state,
+        workoutInProgress: true
+      }
+    case PAUSE_WORKOUT:
+      return {
+        ...state,
+        workoutInProgress: false
       }
     default:
       return state;

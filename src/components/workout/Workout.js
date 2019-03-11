@@ -1,10 +1,22 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { decrementTimer, incrementIndex, setWorkout } from "../actions";
+import CompletedModal from "./CompletedModal";
+
+import {
+  decrementTimer,
+  incrementIndex,
+  setWorkout,
+  workoutCompleted,
+  resetCurrentWorkout,
+  clearWorkout,
+  beginWorkout,
+  pauseWorkout
+} from "../../actions";
 
 class Workout extends Component {
   startTimer = () => {
+    this.props.beginWorkout()
     // ser timer interval when start button is clicked
     this.exerciseTimer = setInterval(() => {
       // function runs once every second
@@ -15,14 +27,42 @@ class Workout extends Component {
         // increment index to next exercise
         this.props.incrementIndex();
       } else if (timer < 1) {
-        // if the timer is less than one is there is not a next exercise
+        // if the timer is less than one is there is no next exercise
         // clear the timer interval
         clearInterval(this.exerciseTimer);
+        this.props.workoutCompleted()
       } else {
         // take one second off the timer
         this.props.decrementTimer();
       }
     }, 1000);
+  }
+  renderCompletedModal = () => {
+    if (this.props.workout.workoutOver) {
+      return (
+        <CompletedModal
+          resetCurrentWorkout={this.props.resetCurrentWorkout}
+          clearWorkout={this.props.clearWorkout}
+        />
+      )
+    }
+  }
+  handlePause = () => {
+    clearInterval(this.exerciseTimer);
+    this.props.pauseWorkout()
+  }
+  handleReset = () => {
+    clearInterval(this.exerciseTimer);
+    this.props.resetCurrentWorkout();
+  }
+  startOrPause = () => {
+    if (this.props.workout.workoutInProgress) {
+      return (
+        <button onClick={this.handlePause}>Pause</button>
+      )
+    } else {
+      return <button onClick={ this.startTimer }>Start</button>
+    }
   }
   renderWorkout = () => {
     const { workout } = this.props;
@@ -34,7 +74,9 @@ class Workout extends Component {
           <h1>{ workout.name }</h1>
           <span>{ workout.timer }</span>
           <p>{ workout.selectedExercises[workout.exerciseIndex].name }</p>
-          <button onClick={ this.startTimer }>Start</button>
+          { this.startOrPause() }
+          <button onClick={this.handleReset}>Reset</button>
+          { this.renderCompletedModal() }
         </div>
       )
     } else {
@@ -60,5 +102,10 @@ export default connect(
   mapStateToProps, {
   decrementTimer,
   incrementIndex,
-  setWorkout
+  setWorkout,
+  workoutCompleted,
+  resetCurrentWorkout,
+  clearWorkout,
+  beginWorkout,
+  pauseWorkout
 })(Workout);
