@@ -1,6 +1,5 @@
 import {
   SIGN_UP_SUCCESS,
-  SIGN_UP_FAILURE,
   LOG_IN_SUCCESS,
   FETCH_USER_SUCCESS
 } from "../actions/types";

@@ -12,7 +12,9 @@ class SignUp extends Component {
     }
   }
   handleSubmit = (event) => {
+    // prevent form from refreshing page
     event.preventDefault();
+    // call logIn function
     this.props.logIn(
       this.state.username,
       this.state.password,
