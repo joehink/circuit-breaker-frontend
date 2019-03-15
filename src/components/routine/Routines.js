@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import { Link } from "react-router-dom";
 
-import { fetchRoutines, deleteRoutine } from "../../actions";
+import { fetchRoutines, deleteRoutine, setEditRoutine } from "../../actions";
 
 import requireAuth from "../requireAuth";
 
@@ -24,6 +24,9 @@ class Routines extends Component {
           { routine.name }
           <button onClick={() => this.setRoutineToDelete(routine)}>
             Delete
+          </button>
+          <button onClick={() => this.handleEdit(routine)}>
+            Edit
           </button>
         </div>
       )
@@ -50,6 +53,10 @@ class Routines extends Component {
   setRoutineToDelete = (routine) => {
     this.setState({ routineToDelete: routine, showDeleteModal: true })
   }
+  handleEdit = (routine) => {
+    this.props.setEditRoutine(routine);
+    this.props.history.push('/edit')
+  }
   componentDidMount() {
     if (this.props.auth.authenticated) {
       this.props.fetchRoutines(this.props.auth.authenticated);
@@ -75,6 +82,6 @@ const mapStateToProps = ({ auth, routines }) => {
 }
 
 export default compose(
-  connect(mapStateToProps, { fetchRoutines, deleteRoutine }),
+  connect(mapStateToProps, { fetchRoutines, deleteRoutine, setEditRoutine }),
   requireAuth
 )(Routines);
