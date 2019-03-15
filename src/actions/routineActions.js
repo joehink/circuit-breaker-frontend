@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { CREATE_NEW_ROUTINE_SUCCESS } from "./types";
+import { CREATE_NEW_ROUTINE_SUCCESS, FETCH_ROUTINES_SUCCESS } from "./types";
 
 export const createRoutine = (routine, jwt) => async dispatch => {
   const res = await axios({
@@ -18,5 +18,5 @@ export const fetchRoutines = jwt => async dispatch => {
     url: "http://localhost:4000/routines",
     headers: { authorization: jwt }
   })
-  console.log(res);
+  dispatch({ type: FETCH_ROUTINES_SUCCESS, payload: res.data });
 }
