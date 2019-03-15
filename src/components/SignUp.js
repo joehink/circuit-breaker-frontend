@@ -43,10 +43,15 @@ class SignUp extends Component {
           id="password"
           required
         />
+        <div>{ this.props.auth.errorMessage }</div>
         <input type="submit" value="Sign Up" />
       </form>
     )
   }
 }
 
-export default connect(null, { signUp })(SignUp)
+const mapStateToProps = ({ auth }) => {
+  return { auth }
+}
+
+export default connect(mapStateToProps, { signUp })(SignUp)

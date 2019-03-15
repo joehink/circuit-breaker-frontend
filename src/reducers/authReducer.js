@@ -1,17 +1,43 @@
 import {
   SIGN_UP_SUCCESS,
-  LOG_IN_SUCCESS,
-  FETCH_USER_SUCCESS
+  SIGN_UP_FAILURE,
+  SIGN_OUT_SUCCESS,
+  SIGN_IN_SUCCESS,
+  SIGN_IN_FAILURE
 } from "../actions/types";
 
-export default function(state = null, action) {
+const INITIAL_STATE = {
+  authenticated: '',
+  errorMessage: ''
+}
+
+export default function(state = INITIAL_STATE, action) {
   switch (action.type) {
     case SIGN_UP_SUCCESS:
-      return action.payload || false;
-    case LOG_IN_SUCCESS:
-      return action.payload || false;
-    case FETCH_USER_SUCCESS:
-      return action.payload || false;
+      return {
+        ...state,
+        authenticated: action.payload
+      };
+    case SIGN_UP_FAILURE:
+      return {
+        ...state,
+        errorMessage: action.payload
+      };
+    case SIGN_OUT_SUCCESS:
+      return {
+        ...state,
+        authenticated: ''
+      };
+    case SIGN_IN_SUCCESS:
+      return {
+        ...state,
+        authenticated: action.payload
+      };
+    case SIGN_IN_FAILURE:
+      return {
+        ...state,
+        errorMessage: action.payload
+      };
     default:
       return state;
   }

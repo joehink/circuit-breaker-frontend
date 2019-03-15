@@ -13,9 +13,12 @@ export const SIGN_UP_SUCCESS = "SIGN_UP_SUCCESS";
 export const SIGN_UP_FAILURE = "SIGN_UP_FAILURE";
 
 
-export const LOG_IN = "LOG_IN";
-export const LOG_IN_SUCCESS = "LOG_IN_SUCCESS";
-export const LOG_IN_FAILURE = "LOG_IN_FAILURE";
+export const SIGN_OUT_SUCCESS = "SIGN_OUT_SUCCESS";
 
 
-export const FETCH_USER_SUCCESS = "FETCH_USER_SUCCESS";
+export const SIGN_IN = "SIGN_IN";
+export const SIGN_IN_SUCCESS = "SIGN_IN_SUCCESS";
+export const SIGN_IN_FAILURE = "SIGN_IN_FAILURE";
+
+
+export const CREATE_NEW_ROUTINE_SUCCESS = "CREATE_NEW_ROUTINE_SUCCESS";

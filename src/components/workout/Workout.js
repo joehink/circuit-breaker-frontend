@@ -21,9 +21,9 @@ class Workout extends Component {
     this.exerciseTimer = setInterval(() => {
       // function runs once every second
 
-      const { timer, exerciseIndex, selectedExercises } = this.props.workout;
+      const { timer, exerciseIndex, exercises } = this.props.workout;
       // if the timer is less than 1 and there is a next exercise
-      if ((timer < 1) && (exerciseIndex < selectedExercises.length - 1)) {
+      if ((timer < 1) && (exerciseIndex < exercises.length - 1)) {
         // increment index to next exercise
         this.props.incrementIndex();
       } else if (timer < 1) {
@@ -73,7 +73,7 @@ class Workout extends Component {
         <div>
           <h1>{ workout.name }</h1>
           <span>{ workout.timer }</span>
-          <p>{ workout.selectedExercises[workout.exerciseIndex].name }</p>
+          <p>{ workout.exercises[workout.exerciseIndex].name }</p>
           { this.startOrPause() }
           <button onClick={this.handleReset}>Reset</button>
           { this.renderCompletedModal() }

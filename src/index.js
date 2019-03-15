@@ -8,7 +8,9 @@ import App from './App';
 import reducers from "./reducers";
 import * as serviceWorker from './serviceWorker';
 
-const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
+const store = createStore(reducers, {
+  auth: { authenticated: localStorage.getItem('token') }
+}, applyMiddleware(reduxThunk));
 
 ReactDOM.render(
   <Provider store={store}>

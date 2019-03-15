@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import exercises from "../../data/exercises";
 
-import { setWorkout } from "../../actions";
+import { setWorkout, createRoutine } from "../../actions";
 
 import DurationModal from "./DurationModal";
 
@@ -11,7 +11,7 @@ class CreateRoutine extends Component {
     super(props);
     this.state = {
       routine: {
-        selectedExercises: [],
+        exercises: [],
         name: "New Routine"
       },
       durationToSet: 30,
@@ -34,9 +34,9 @@ class CreateRoutine extends Component {
       )
     })
   }
-  renderSelectedExercises = () =>  {
+  renderRoutineExercises = () =>  {
     // map through selected exercises array
-    return this.state.routine.selectedExercises.map((exercise, index) => {
+    return this.state.routine.exercises.map((exercise, index) => {
       // return a div with image and name for each exercise
       return (
         <div
@@ -56,13 +56,22 @@ class CreateRoutine extends Component {
       )
     })
   }
+  renderSave = () => {
+    if (this.props.auth) {
+      return (
+        <button onClick={() => this.props.createRoutine(this.state.routine)}>
+          Save Routine
+        </button>
+      )
+    }
+  }
   selectExercise = (exercise) => {
     // append exercise to end of selectedExercises array
     // set showDurationModal to true
     this.setState({
       routine: {
         ...this.state.routine,
-        selectedExercises: [...this.state.routine.selectedExercises, exercise]
+        exercises: [...this.state.routine.exercises, exercise]
       },
       showDurationModal: true
     })
@@ -82,15 +91,15 @@ class CreateRoutine extends Component {
   }
   setDuration = () => {
     this.setState(prevState => {
-      const { selectedExercises } = prevState.routine;
+      const { exercises } = prevState.routine;
       const { durationToSet } = prevState;
       // set duration of the last selected exercise equal to durationToSet
-      selectedExercises[selectedExercises.length - 1].duration = durationToSet;
+      exercises[exercises.length - 1].duration = durationToSet;
       // set selectedExercises to state
       // reset durationToSet and showDurationModal
       return {
         ...prevState,
-        routine: { ...prevState.routine, selectedExercises },
+        routine: { ...prevState.routine, exercises },
         showDurationModal: false,
         durationToSet: 30
       }
@@ -115,13 +124,13 @@ class CreateRoutine extends Component {
   }
   onDragStart = (event, index) => {
     // set draggedItem equal to the exercise that is being dragged
-    this.draggedItem = this.state.routine.selectedExercises[index];
+    this.draggedItem = this.state.routine.exercises[index];
     event.dataTransfer.effectAllowed = "move";
     event.dataTransfer.setData("text/html", event.target.parentNode);
     event.dataTransfer.setDragImage(event.target.parentNode, 100, 100);
   };
   onDragOver = index => {
-    const draggedOverItem = this.state.routine.selectedExercises[index];
+    const draggedOverItem = this.state.routine.exercises[index];
 
     // if the item is dragged over itself, ignore
     if (this.draggedItem === draggedOverItem) {
@@ -129,7 +138,7 @@ class CreateRoutine extends Component {
     }
 
     // filter out the currently dragged item
-    let selected = this.state.routine.selectedExercises.filter(exercise => {
+    let selected = this.state.routine.exercises.filter(exercise => {
       return exercise !== this.draggedItem
     });
 
@@ -139,7 +148,7 @@ class CreateRoutine extends Component {
     this.setState({
       routine: {
         ...this.state.routine,
-        selectedExercises: selected
+        exercises: selected
       }
     });
   };
@@ -155,13 +164,11 @@ class CreateRoutine extends Component {
           onChange={this.handleChange}
         />
         {this.renderExercises()}
-        <div
-          // onDragOver={(e)=>this.onDragOver(e)}
-          // onDrop={(e)=>{this.onDrop(e, "selected")}}
-        >
+        <div>
           <h2>Selected Exercises</h2>
-          {this.renderSelectedExercises()}
+          {this.renderRoutineExercises()}
         </div>
+        { this.renderSave() }
         <button onClick={this.handleStart}>
           Start Routine
         </button>
@@ -171,4 +178,8 @@ class CreateRoutine extends Component {
   }
 }
 
-export default connect(null, { setWorkout })(CreateRoutine);
+const mapStateToProps = ({ auth }) => {
+  return { auth };
+}
+
+export default connect(mapStateToProps, { setWorkout, createRoutine })(CreateRoutine);

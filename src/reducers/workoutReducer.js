@@ -13,7 +13,7 @@ const INITIAL_STATE = {
   exerciseIndex: 0,
   timer: 30,
   name: "",
-  selectedExercises: [],
+  exercises: [],
   workoutOver: false,
   workoutInProgress: false
 }
@@ -24,12 +24,12 @@ export default function(state = INITIAL_STATE, action) {
       return {
         ...state,
         ...action.payload,
-        timer: action.payload.selectedExercises[0].duration,
+        timer: action.payload.exercises[0].duration,
       }
     case INCREMENT_INDEX:
       return {
         ...state,
-        timer: state.selectedExercises[state.exerciseIndex + 1].duration,
+        timer: state.exercises[state.exerciseIndex + 1].duration,
         exerciseIndex: state.exerciseIndex + 1
       }
     case DECREMENT_TIMER:
@@ -49,7 +49,7 @@ export default function(state = INITIAL_STATE, action) {
     case RESET_CURRENT_WORKOUT:
       return {
         ...state,
-        timer: state.selectedExercises[0].duration,
+        timer: state.exercises[0].duration,
         exerciseIndex: 0,
         workoutOver: false,
         workoutInProgress: false

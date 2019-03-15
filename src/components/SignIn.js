@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { logIn } from "../actions";
+import { signIn } from "../actions";
 
-class SignUp extends Component {
+class SignIn extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,7 +15,7 @@ class SignUp extends Component {
     // prevent form from refreshing page
     event.preventDefault();
     // call logIn function
-    this.props.logIn(
+    this.props.signIn(
       this.state.username,
       this.state.password,
       this.props.history
@@ -43,10 +43,10 @@ class SignUp extends Component {
           id="password"
           required
         />
-        <input type="submit" value="Sign Up" />
+        <input type="submit" value="Sign In" />
       </form>
     )
   }
 }
 
-export default connect(null, { logIn })(SignUp)
+export default connect(null, { signIn })(SignIn)
