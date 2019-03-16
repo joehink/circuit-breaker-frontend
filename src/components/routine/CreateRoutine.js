@@ -20,10 +20,10 @@ class CreateRoutine extends Component {
   }
   renderExercises = () =>  {
     // map through imported exercises array
-    return exercises.map(exercise => {
+    return exercises.map((exercise, index) => {
       // return a div with image and name for each exercise
       return (
-        <div key={exercise.name} onClick={() => this.selectExercise(exercise)}>
+        <div key={index} onClick={() => this.selectExercise(exercise)}>
           <img
             src={exercise.image}
             alt={exercise.name}
@@ -40,9 +40,13 @@ class CreateRoutine extends Component {
       // return a div with image and name for each exercise
       return (
         <div
-          key={exercise.name}
+          key={index}
           onDragOver={() => this.onDragOver(index)}
         >
+          <i
+            className="fas fa-times"
+            onClick={() => this.removeExercise(index)}
+          ></i>
           <img
             onDragStart={e => this.onDragStart(e, index)}
             onDragEnd={this.onDragEnd}
@@ -58,7 +62,7 @@ class CreateRoutine extends Component {
   }
   renderSave = () => {
     const { authenticated } = this.props.auth;
-    
+
     if (authenticated) {
       return (
         <button
@@ -78,6 +82,18 @@ class CreateRoutine extends Component {
         exercises: [...this.state.routine.exercises, exercise]
       },
       showDurationModal: true
+    })
+  }
+  removeExercise = (index) => {
+    this.setState(prevState => {
+      prevState.routine.exercises.splice(index, 1);
+      return {
+        ...prevState,
+        routine: {
+          ...prevState.routine,
+          exercises: [...prevState.routine.exercises]
+        }
+      }
     })
   }
   renderDurationModal = () => {
@@ -132,7 +148,7 @@ class CreateRoutine extends Component {
     event.dataTransfer.effectAllowed = "move";
     event.dataTransfer.setData("text/html", event.target.parentNode);
     event.dataTransfer.setDragImage(event.target.parentNode, 100, 100);
-  };
+  }
   onDragOver = index => {
     const draggedOverItem = this.state.routine.exercises[index];
 
@@ -155,21 +171,27 @@ class CreateRoutine extends Component {
         exercises: selected
       }
     });
-  };
+  }
   onDragEnd = () => {
     this.draggedItem = null;
-  };
+  }
   render() {
     return (
       <div>
+        <h2>Create Routine</h2>
+        <label htmlFor="name">Name</label>
         <input
           type="text"
           value={this.state.routine.name}
           onChange={this.handleChange}
+          id="name"
         />
-        {this.renderExercises()}
+        <h3>Exercises</h3>
         <div>
-          <h2>Selected Exercises</h2>
+          {this.renderExercises()}
+        </div>
+        <h3>Selected</h3>
+        <div>
           {this.renderRoutineExercises()}
         </div>
         { this.renderSave() }
