@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { connect } from "react-redux";
 
+import MainNav from "./components/MainNav";
 import Landing from "./components/Landing";
 import Workout from "./components/workout/Workout";
 import SignUp from "./components/SignUp";
@@ -16,6 +17,7 @@ class App extends Component {
     return (
       <Router>
         <Fragment>
+          <MainNav />
           <Route exact path="/" component={Landing} />
           <Route exact path="/routines" component={Routines} />
           <Route exact path="/create" component={CreateRoutine} />

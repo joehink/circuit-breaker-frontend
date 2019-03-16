@@ -67,7 +67,6 @@ class Routines extends Component {
       <div>
         Routines
         <Link to="/create">Create a Routine</Link>
-        <Link to="/signout">Sign Out</Link>
         <div>
           { this.renderRoutines() }
         </div>

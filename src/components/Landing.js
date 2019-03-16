@@ -5,9 +5,10 @@ class Landing extends Component {
   render() {
     return (
       <div>
-        <Link to="/signup">Sign Up</Link>
-        <Link to="/signin">Sign In</Link>
-        <Link to="/create">Create a Routine</Link>
+        <div>
+          <h1>Circuit Breaker</h1>
+          <Link to="/create">Create a Routine</Link>
+        </div>
       </div>
     )
   }
