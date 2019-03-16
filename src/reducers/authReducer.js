@@ -15,7 +15,7 @@ export default function(state = INITIAL_STATE, action) {
   switch (action.type) {
     case SIGN_UP_SUCCESS:
       return {
-        ...state,
+        errorMessage: "",
         authenticated: action.payload
       };
     case SIGN_UP_FAILURE:
@@ -30,7 +30,7 @@ export default function(state = INITIAL_STATE, action) {
       };
     case SIGN_IN_SUCCESS:
       return {
-        ...state,
+        errorMessage: "",
         authenticated: action.payload
       };
     case SIGN_IN_FAILURE:

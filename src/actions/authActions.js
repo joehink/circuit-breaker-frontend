@@ -8,19 +8,23 @@ import {
   SIGN_IN_FAILURE
 } from "./types";
 
-export const signUp = (username, password, history) => async dispatch => {
+export const signUp = (username, password, confirmation, history) => async dispatch => {
   try {
-    // make request to signUp new user
-    const res = await axios.post("http://localhost:4000/users", {
-      username,
-      password
-    })
+    if (password !== confirmation) {
+      dispatch({ type: SIGN_UP_FAILURE, payload: "Password does not match confirmation" })
+    } else {
+      // make request to signUp new user
+      const res = await axios.post("http://localhost:4000/users", {
+        username,
+        password
+      })
 
-    // request was successful
-    dispatch({ type: SIGN_UP_SUCCESS, payload: res.data.token })
-    localStorage.setItem('token', res.data.token);
-    // navigate to root route
-    history.push("/routines");
+      // request was successful
+      dispatch({ type: SIGN_UP_SUCCESS, payload: res.data.token })
+      localStorage.setItem('token', res.data.token);
+      // navigate to root route
+      history.push("/routines");
+    }
   } catch (err) {
     // something went wrong with request
     dispatch({ type: SIGN_UP_FAILURE, payload: "Username is in use"  })
