@@ -3,7 +3,12 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import { Link } from "react-router-dom";
 
-import { fetchRoutines, deleteRoutine, setEditRoutine } from "../../actions";
+import {
+  fetchRoutines,
+  deleteRoutine,
+  setEditRoutine,
+  setWorkout
+} from "../../actions";
 
 import requireAuth from "../requireAuth";
 
@@ -21,14 +26,41 @@ class Routines extends Component {
     return this.props.routines.map(routine => {
       return (
         <div key={routine._id}>
-          { routine.name }
-          <button onClick={() => this.setRoutineToDelete(routine)}>
-            Delete
-          </button>
-          <button onClick={() => this.handleEdit(routine)}>
-            Edit
-          </button>
+          <nav>
+            <h3 onClick={() => this.handleSetWorkout(routine)}>
+              { routine.name }
+            </h3>
+            <div>
+              <i
+                onClick={() => this.setRoutineToDelete(routine)}
+                className="far fa-trash-alt"
+              ></i>
+              <i
+                onClick={() => this.handleEdit(routine)}
+                className="fas fa-pencil-alt"
+              ></i>
+            </div>
+          </nav>
+          <div>
+            { this.renderExercises(routine) }
+          </div>
         </div>
+      )
+    })
+  }
+  handleSetWorkout = (routine) => {
+    this.props.setWorkout(routine);
+    this.props.history.push('/workout');
+  }
+  renderExercises = (routine) => {
+    return routine.exercises.map((exercise, index) => {
+      return (
+        <img
+          key={index}
+          width="50"
+          src={exercise.image}
+          alt={exercise.name}
+        />
       )
     })
   }
@@ -81,6 +113,11 @@ const mapStateToProps = ({ auth, routines }) => {
 }
 
 export default compose(
-  connect(mapStateToProps, { fetchRoutines, deleteRoutine, setEditRoutine }),
+  connect(mapStateToProps, {
+    fetchRoutines,
+    deleteRoutine,
+    setEditRoutine,
+    setWorkout
+  }),
   requireAuth
 )(Routines);
