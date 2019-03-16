@@ -66,7 +66,7 @@ class CreateRoutine extends Component {
     if (authenticated) {
       return (
         <button
-          onClick={() => this.props.createRoutine(this.state.routine, authenticated)}
+          onClick={() => this.props.createRoutine(this.state.routine, authenticated, this.props.history)}
         >
           Save Routine
         </button>

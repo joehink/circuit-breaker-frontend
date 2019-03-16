@@ -2,6 +2,7 @@ import {
   SET_EDIT_ROUTINE,
   SELECT_EXERCISE,
   SET_DURATION,
+  REMOVE_EXERCISE,
   DURATION_CHANGE,
   NAME_CHANGE
 } from "./types";
@@ -16,6 +17,10 @@ export const selectExercise = (exercise) => {
 
 export const setDuration = () => {
   return { type: SET_DURATION }
+}
+
+export const removeExercise = (index) => {
+  return { type: REMOVE_EXERCISE, payload: index }
 }
 
 export const handleDurationChange = (event) => {

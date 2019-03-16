@@ -7,17 +7,17 @@ import {
   UPDATE_ROUTINE_SUCCESS
 } from "./types";
 
-export const createRoutine = (routine, jwt) => async dispatch => {
+export const createRoutine = (routine, jwt, history) => async dispatch => {
   const res = await axios({
     method: "POST",
     url: "http://localhost:4000/routines",
     data: routine,
     headers: { authorization: jwt }
   });
-  dispatch({ type: CREATE_NEW_ROUTINE_SUCCESS, payload: res.data })
+  dispatch({ type: CREATE_NEW_ROUTINE_SUCCESS, payload: res.data });
 }
 
-export const updateRoutine = (routine, jwt) => async dispatch => {
+export const updateRoutine = (routine, jwt, history) => async dispatch => {
   const res = await axios({
     method: "PUT",
     url: `http://localhost:4000/routines/${routine._id}`,
@@ -25,6 +25,7 @@ export const updateRoutine = (routine, jwt) => async dispatch => {
     headers: { authorization: jwt }
   });
   dispatch({ type: UPDATE_ROUTINE_SUCCESS, payload: res.data })
+  history.push('/routines');
 }
 
 export const fetchRoutines = jwt => async dispatch => {

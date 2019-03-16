@@ -2,6 +2,7 @@ import {
   SET_EDIT_ROUTINE,
   SELECT_EXERCISE,
   SET_DURATION,
+  REMOVE_EXERCISE,
   DURATION_CHANGE,
   NAME_CHANGE
 } from "../actions/types";
@@ -9,7 +10,7 @@ import {
 const INITIAL_STATE = {
   showDurationModal: false,
   durationToSet: 30,
-  routine: {}
+  routine: null
 }
 
 export default function(state = INITIAL_STATE, action) {
@@ -42,7 +43,15 @@ export default function(state = INITIAL_STATE, action) {
         showDurationModal: false,
         durationToSet: 30
       }
-
+    case REMOVE_EXERCISE:
+      state.routine.exercises.splice(action.payload, 1);
+      return {
+        ...state,
+        routine: {
+          ...state.routine,
+          exercises: [...state.routine.exercises]
+        }
+      }
     case DURATION_CHANGE:
       return {
         ...state,

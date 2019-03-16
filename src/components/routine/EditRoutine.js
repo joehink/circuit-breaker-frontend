@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import exercises from "../../data/exercises";
+import { Redirect } from "react-router-dom"
 
 import DurationModal from "./DurationModal";
 
@@ -11,6 +12,7 @@ import {
   selectExercise,
   handleDurationChange,
   setDuration,
+  removeExercise,
   handleChange,
   updateRoutine
 } from "../../actions";
@@ -41,6 +43,10 @@ class EditRoutine extends Component {
           key={index}
           onDragOver={() => this.onDragOver(index)}
         >
+          <i
+            className="fas fa-times"
+            onClick={() => this.props.removeExercise(index)}
+          ></i>
           <img
             onDragStart={e => this.onDragStart(e, index)}
             onDragEnd={this.onDragEnd}
@@ -73,7 +79,7 @@ class EditRoutine extends Component {
     event.dataTransfer.effectAllowed = "move";
     event.dataTransfer.setData("text/html", event.target.parentNode);
     event.dataTransfer.setDragImage(event.target.parentNode, 100, 100);
-  };
+  }
   onDragOver = index => {
     const draggedOverItem = this.props.editRoutine.routine.exercises[index];
 
@@ -96,31 +102,42 @@ class EditRoutine extends Component {
         exercises: selected
       }
     });
-  };
+  }
   onDragEnd = () => {
     this.draggedItem = null;
-  };
+  }
   render() {
-    return (
-      <div>
-        <input
-          type="text"
-          value={this.props.editRoutine.routine.name}
-          onChange={this.props.handleChange}
-        />
-        {this.renderExercises()}
+    const { editRoutine, handleChange, updateRoutine, auth, history } = this.props;
+    if (!editRoutine.routine) {
+      return <Redirect to="/routines" />
+    } else {
+      return (
         <div>
-          <h2>Selected Exercises</h2>
-          {this.renderRoutineExercises()}
+          <h2>Edit Routine</h2>
+          <label htmlFor="name">Name</label>
+          <input
+            type="text"
+            value={editRoutine.routine.name}
+            onChange={handleChange}
+            id="name"
+          />
+          <h3>Exercises</h3>
+          <div>
+            {this.renderExercises()}
+          </div>
+          <h3>Selected</h3>
+          <div>
+            {this.renderRoutineExercises()}
+          </div>
+          <button
+            onClick={() => updateRoutine(editRoutine.routine, auth.authenticated, history)}
+          >
+            Save Routine
+          </button>
+          {this.renderDurationModal()}
         </div>
-        <button
-          onClick={() => this.props.updateRoutine(this.props.editRoutine.routine, this.props.auth.authenticated)}
-        >
-          Save Routine
-        </button>
-        {this.renderDurationModal()}
-      </div>
-    )
+      )
+    }
   }
 }
 
@@ -128,12 +145,12 @@ const mapStateToProps = ({ auth, editRoutine }) => {
   return { auth, editRoutine }
 }
 
-
 export default compose(
   connect(mapStateToProps, {
     selectExercise,
     handleDurationChange,
     setDuration,
+    removeExercise,
     handleChange,
     updateRoutine
   }),
