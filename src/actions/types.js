@@ -6,6 +6,9 @@ export const CLEAR_WORKOUT = "CLEAR_WORKOUT";
 export const RESET_CURRENT_WORKOUT = "RESET_CURRENT_WORKOUT";
 export const BEGIN_WORKOUT = "BEGIN_WORKOUT";
 export const PAUSE_WORKOUT = "PAUSE_WORKOUT";
+export const CHANGE_REPS = "CHANGE_REPS";
+export const SET_REPS = "SET_REPS";
+export const INCREMENT_REP_COUNT = "INCREMENT_REP_COUNT";
 
 
 export const SIGN_UP = "SIGN_UP";

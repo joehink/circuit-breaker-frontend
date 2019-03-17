@@ -6,7 +6,10 @@ import {
   CLEAR_WORKOUT,
   RESET_CURRENT_WORKOUT,
   BEGIN_WORKOUT,
-  PAUSE_WORKOUT
+  PAUSE_WORKOUT,
+  CHANGE_REPS,
+  SET_REPS,
+  INCREMENT_REP_COUNT
 } from "./types";
 
 
@@ -39,4 +42,16 @@ export const beginWorkout = () => {
 }
 export const pauseWorkout = () => {
   return { type: PAUSE_WORKOUT }
+}
+
+export const repsChange = (event) => {
+  return { type: CHANGE_REPS, payload: event.target.value }
+}
+
+export const setReps = () => {
+  return { type: SET_REPS }
+}
+
+export const incrementRepCount = () => {
+  return { type: INCREMENT_REP_COUNT }
 }

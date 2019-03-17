@@ -6,7 +6,10 @@ import {
   CLEAR_WORKOUT,
   RESET_CURRENT_WORKOUT,
   BEGIN_WORKOUT,
-  PAUSE_WORKOUT
+  PAUSE_WORKOUT,
+  CHANGE_REPS,
+  SET_REPS,
+  INCREMENT_REP_COUNT
 } from "../actions/types";
 
 const INITIAL_STATE = {
@@ -15,7 +18,10 @@ const INITIAL_STATE = {
   name: "",
   exercises: [],
   workoutOver: false,
-  workoutInProgress: false
+  workoutInProgress: false,
+  showRepModal: true,
+  reps: 1,
+  repCount: 1
 }
 
 export default function(state = INITIAL_STATE, action) {
@@ -52,7 +58,8 @@ export default function(state = INITIAL_STATE, action) {
         timer: state.exercises[0].duration,
         exerciseIndex: 0,
         workoutOver: false,
-        workoutInProgress: false
+        workoutInProgress: false,
+        repCount: 1
       }
     case BEGIN_WORKOUT:
       return {
@@ -63,6 +70,23 @@ export default function(state = INITIAL_STATE, action) {
       return {
         ...state,
         workoutInProgress: false
+      }
+    case CHANGE_REPS:
+      return {
+        ...state,
+        reps: parseInt(action.payload)
+      }
+    case SET_REPS:
+      return {
+        ...state,
+        showRepModal: false
+      }
+    case INCREMENT_REP_COUNT:
+      return {
+        ...state,
+        repCount: state.repCount + 1,
+        exerciseIndex: 0,
+        timer: state.exercises[0].duration
       }
     default:
       return state;
