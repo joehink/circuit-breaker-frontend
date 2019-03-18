@@ -1,0 +1,11 @@
+.auth-button {
+  color: $dark-gray;
+  text-decoration: none;
+  padding: 0 .5rem;
+}
+
+@media(min-width: $sm) {
+  .auth-button {
+    padding: 0 1rem;
+  }
+}

@@ -6,23 +6,23 @@ class MainNav extends Component {
   renderAuthButtons = () => {
     if (!this.props.auth.authenticated) {
       return (
-        <div>
-          <Link to="/signup">Sign Up</Link>
-          <Link to="/signin">Sign In</Link>
+        <div className="auth-buttons">
+          <Link className="auth-button" to="/signup">Sign Up</Link>
+          <Link className="auth-button" to="/signin">Sign In</Link>
         </div>
       )
     } else {
       return (
-        <div>
-          <Link to="/signout">Sign Out</Link>
+        <div className="auth-buttons">
+          <Link className="auth-button" to="/signout">Sign Out</Link>
         </div>
       )
     }
   }
   render() {
     return (
-      <nav>
-        <span>Circuit Breaker</span>
+      <nav className="main-nav">
+        <h1>Circuit Breaker</h1>
         { this.renderAuthButtons() }
       </nav>
     )

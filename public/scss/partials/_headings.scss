@@ -1,0 +1,12 @@
+h1 {
+  font-family: 'Bungee Inline', cursive;
+  color: $black;
+  margin: 0;
+  font-size: 1rem;
+}
+
+@media(min-width: $sm) {
+  h1 {
+    font-size: 2rem;
+  }
+}
