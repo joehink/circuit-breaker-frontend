@@ -3,8 +3,16 @@
   color: $white;
   padding: 0.5rem 1rem;
   text-decoration: none;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  outline: none;
+  display: block;
 }
 
 .form-button:hover {
+  opacity: .75;
+}
+
+.form-button:disabled {
   opacity: .75;
 }

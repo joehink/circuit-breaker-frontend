@@ -9,16 +9,17 @@ class DurationModal extends Component {
   }
   render() {
     return (
-      <div>
-        <div>
+      <div className="modal-wrapper">
+        <div className="modal">
           <form onSubmit={this.handleSubmit}>
             <label htmlFor="">Duration (in seconds)</label>
             <input
               type="number"
               value={this.props.duration}
               onChange={this.props.handleDurationChange}
+              className="form-input"
             />
-            <input type="submit" />
+            <input className="form-button" type="submit" />
           </form>
         </div>
       </div>

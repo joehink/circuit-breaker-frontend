@@ -23,42 +23,51 @@ class EditRoutine extends Component {
     return exercises.map((exercise, index) => {
       // return a div with image and name for each exercise
       return (
-        <div key={index} onClick={() => this.props.selectExercise(exercise)}>
+        <div
+          key={index}
+          onClick={() => this.props.selectExercise(exercise)}
+          className="exercise"
+        >
           <img
             src={exercise.image}
             alt={exercise.name}
-            width={200}
+            width="150"
           />
-          <p>{exercise.name}</p>
+          <p className="exercise-name">{exercise.name}</p>
         </div>
       )
     })
   }
   renderRoutineExercises = () =>  {
-    // map through selected exercises array
-    return this.props.editRoutine.routine.exercises.map((exercise, index) => {
-      // return a div with image and name for each exercise
-      return (
-        <div
-          key={index}
-          onDragOver={() => this.onDragOver(index)}
-        >
-          <i
-            className="fas fa-times"
-            onClick={() => this.props.removeExercise(index)}
-          ></i>
-          <img
-            onDragStart={e => this.onDragStart(e, index)}
-            onDragEnd={this.onDragEnd}
-            draggable
-            src={exercise.image}
-            alt={exercise.name}
-            width={200}
-          />
-          <p>{exercise.name}</p>
-        </div>
-      )
-    })
+    if (this.props.editRoutine.routine.exercises.length) {
+      // map through selected exercises array
+      return this.props.editRoutine.routine.exercises.map((exercise, index) => {
+        // return a div with image and name for each exercise
+        return (
+          <div
+            key={index}
+            onDragOver={() => this.onDragOver(index)}
+            className="selected-exercise"
+          >
+            <i
+              className="fas fa-times"
+              onClick={() => this.props.removeExercise(index)}
+            ></i>
+            <img
+              onDragStart={e => this.onDragStart(e, index)}
+              onDragEnd={this.onDragEnd}
+              draggable
+              src={exercise.image}
+              alt={exercise.name}
+              width="150"
+            />
+            <p className="exercise-name">{exercise.name}</p>
+          </div>
+        )
+      })
+    } else {
+        return <p className="selected-exercise-warning">No selected exercises.</p>
+    }
   }
   renderDurationModal = () => {
     // if showDurationModal is true
@@ -112,29 +121,34 @@ class EditRoutine extends Component {
       return <Redirect to="/routines" />
     } else {
       return (
-        <div>
-          <h2>Edit Routine</h2>
-          <label htmlFor="name">Name</label>
-          <input
-            type="text"
-            value={editRoutine.routine.name}
-            onChange={handleChange}
-            id="name"
-          />
-          <h3>Exercises</h3>
-          <div>
-            {this.renderExercises()}
+        <div className="routine-form">
+          <div className="container">
+            <h2>Edit Routine</h2>
+            <label htmlFor="name">Name</label>
+            <input
+              type="text"
+              value={editRoutine.routine.name}
+              onChange={handleChange}
+              id="name"
+              className="form-input"
+            />
+            <h3>Exercises</h3>
+            <div className="exercise-container">
+              {this.renderExercises()}
+            </div>
+            <h3>Selected</h3>
+            <div className="exercise-container">
+              {this.renderRoutineExercises()}
+            </div>
+            <button
+              onClick={() => updateRoutine(editRoutine.routine, auth.authenticated, history)}
+              className="form-button"
+              disabled={!this.props.editRoutine.routine.exercises.length}
+            >
+              Save Routine
+            </button>
+            {this.renderDurationModal()}
           </div>
-          <h3>Selected</h3>
-          <div>
-            {this.renderRoutineExercises()}
-          </div>
-          <button
-            onClick={() => updateRoutine(editRoutine.routine, auth.authenticated, history)}
-          >
-            Save Routine
-          </button>
-          {this.renderDurationModal()}
         </div>
       )
     }

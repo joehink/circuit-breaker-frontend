@@ -4,6 +4,10 @@
   padding: 0 .5rem;
 }
 
+.auth-button:hover {
+  opacity: 0.75;
+}
+
 @media(min-width: $sm) {
   .auth-button {
     padding: 0 1rem;

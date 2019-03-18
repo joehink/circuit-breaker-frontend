@@ -5,7 +5,8 @@ import {
   SIGN_UP_FAILURE,
   SIGN_OUT_SUCCESS,
   SIGN_IN_SUCCESS,
-  SIGN_IN_FAILURE
+  SIGN_IN_FAILURE,
+  CLEAR_ERROR_MESSAGE
 } from "./types";
 
 export const signUp = (username, password, confirmation, history) => async dispatch => {
@@ -52,4 +53,8 @@ export const signIn = (username, password, history) => async dispatch => {
     // something went wrong with request
     dispatch({ type: SIGN_IN_FAILURE, payload: "Invalid credentials."  })
   }
+}
+
+export const clearErrorMessage = () => {
+  return { type: CLEAR_ERROR_MESSAGE }
 }

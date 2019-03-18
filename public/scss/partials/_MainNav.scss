@@ -5,9 +5,17 @@
 }
 
 .auth-buttons {
-  margin-left: auto;
+  width: 100%;
+  text-align: right;
 }
 
 .brand-link {
   text-decoration: none;
+}
+
+@media(min-width: $sm) {
+  .auth-buttons {
+    margin-left: auto;
+    width: auto;
+  }
 }

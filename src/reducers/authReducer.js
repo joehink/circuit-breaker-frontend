@@ -3,7 +3,8 @@ import {
   SIGN_UP_FAILURE,
   SIGN_OUT_SUCCESS,
   SIGN_IN_SUCCESS,
-  SIGN_IN_FAILURE
+  SIGN_IN_FAILURE,
+  CLEAR_ERROR_MESSAGE
 } from "../actions/types";
 
 const INITIAL_STATE = {
@@ -37,6 +38,11 @@ export default function(state = INITIAL_STATE, action) {
       return {
         ...state,
         errorMessage: action.payload
+      };
+    case CLEAR_ERROR_MESSAGE:
+      return {
+        ...state,
+        errorMessage: ""
       };
     default:
       return state;

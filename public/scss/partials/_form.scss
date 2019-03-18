@@ -1,0 +1,20 @@
+form > * {
+  display: block;
+}
+
+label {
+  padding: 20px 0 5px;
+  display: block;
+}
+
+.form-input {
+  padding: 5px;
+  border: 2px solid $dark-gray;
+  outline: none;
+}
+
+.error {
+  color: red;
+  margin: 0;
+  padding: 1rem 0 0;
+}
