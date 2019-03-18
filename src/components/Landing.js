@@ -4,10 +4,15 @@ import { Link } from "react-router-dom";
 class Landing extends Component {
   render() {
     return (
-      <div>
-        <div>
+      <div className="landing">
+        <div className="modal">
           <h1>Circuit Breaker</h1>
-          <Link to="/create">Create a Routine</Link>
+          <Link
+            className="form-button landing-button"
+            to="/create"
+          >
+            Create a Routine
+          </Link>
         </div>
       </div>
     )

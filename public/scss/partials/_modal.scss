@@ -1,0 +1,20 @@
+.modal {
+  background: $white;
+  margin: auto;
+  width: 300px;
+  height: 300px;
+  border-radius: 100%;
+  box-shadow: 0 0 20px rgba(0,0,0,0.15);
+  border: 1px solid $light-gray;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@media(min-width: $sm) {
+  .modal {
+    width: 400px;
+    height: 400px;
+  }
+}

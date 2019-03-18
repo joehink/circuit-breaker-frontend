@@ -313,7 +313,9 @@ body {
 #root {
   height: 100%;
   background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
-  font-family: 'Roboto', sans-serif; }
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  flex-direction: column; }
 
 #root * {
   box-sizing: border-box; }
@@ -322,9 +324,12 @@ h1 {
   font-family: 'Bungee Inline', cursive;
   color: #2E2F2F;
   margin: 0;
-  font-size: 1rem; }
+  font-size: 1.25rem; }
 
 @media (min-width: 576px) {
+  h1 {
+    font-size: 1.5rem; } }
+@media (min-width: 768px) {
   h1 {
     font-size: 2rem; } }
 .auth-button {
@@ -335,6 +340,32 @@ h1 {
 @media (min-width: 576px) {
   .auth-button {
     padding: 0 1rem; } }
+.form-button {
+  background: #454851;
+  color: #FDFBFB;
+  padding: 0.5rem 1rem;
+  text-decoration: none; }
+
+.form-button:hover {
+  opacity: .75; }
+
+.modal {
+  background: #FDFBFB;
+  margin: auto;
+  width: 300px;
+  height: 300px;
+  border-radius: 100%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  border: 1px solid #C1C1C1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+
+@media (min-width: 576px) {
+  .modal {
+    width: 400px;
+    height: 400px; } }
 .main-nav {
   display: flex;
   align-items: center;
@@ -342,5 +373,16 @@ h1 {
 
 .auth-buttons {
   margin-left: auto; }
+
+.brand-link {
+  text-decoration: none; }
+
+.landing {
+  display: flex;
+  flex: 1;
+  overflow-x: scroll; }
+
+.landing-button {
+  margin-top: 2rem; }
 
 /*# sourceMappingURL=styles.css.map */

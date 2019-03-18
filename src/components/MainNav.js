@@ -22,7 +22,9 @@ class MainNav extends Component {
   render() {
     return (
       <nav className="main-nav">
-        <h1>Circuit Breaker</h1>
+        <Link to="/" className="brand-link">
+          <h1>Circuit Breaker</h1>
+        </Link>
         { this.renderAuthButtons() }
       </nav>
     )

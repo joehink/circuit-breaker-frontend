@@ -1,0 +1,10 @@
+.form-button {
+  background: $dark-gray;
+  color: $white;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+}
+
+.form-button:hover {
+  opacity: .75;
+}
