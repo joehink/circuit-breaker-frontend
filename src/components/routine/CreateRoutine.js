@@ -78,6 +78,8 @@ class CreateRoutine extends Component {
         <button
           onClick={() => this.props.createRoutine(this.state.routine, authenticated, this.props.history)}
           disabled={!this.state.routine.exercises.length}
+          className="form-button"
+          style={{ marginRight: "10px" }}
         >
           Save Routine
         </button>

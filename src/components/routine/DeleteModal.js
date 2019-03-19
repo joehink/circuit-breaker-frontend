@@ -9,7 +9,10 @@ class DeleteModal extends Component {
     return (
       <div className="modal-wrapper">
         <div className="modal">
-          <h3>Are you sure you want to delete "{this.props.routine.name}"?</h3>
+          <i className="fas fa-question-circle"></i>
+          <h3 style={{ marginBottom: 0}}>
+            Are you sure you want to delete "{this.props.routine.name}"?
+          </h3>
           <form onSubmit={this.handleSubmit}>
             <div className="form-button-group">
               <button

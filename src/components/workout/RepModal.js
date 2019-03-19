@@ -9,8 +9,9 @@ class RepModal extends Component {
     return (
       <div className="modal-wrapper">
         <div className="modal">
-          <h3>How many reps?</h3>
           <form onSubmit={this.handleSubmit}>
+            <i className="fas fa-dumbbell"></i>
+            <h3>How many reps?</h3>
             <input
               type="number"
               value={this.props.reps}

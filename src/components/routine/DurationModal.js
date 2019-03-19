@@ -12,7 +12,8 @@ class DurationModal extends Component {
       <div className="modal-wrapper">
         <div className="modal">
           <form onSubmit={this.handleSubmit}>
-            <label htmlFor="">Duration (in seconds)</label>
+            <i className="fas fa-clock"></i>
+            <h3>Duration (in seconds)</h3>
             <input
               type="number"
               value={this.props.duration}
