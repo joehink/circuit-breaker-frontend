@@ -4,7 +4,8 @@ import {
   SET_DURATION,
   REMOVE_EXERCISE,
   DURATION_CHANGE,
-  NAME_CHANGE
+  NAME_CHANGE,
+  UPDATE_EXERCISES
 } from "../actions/types";
 
 const INITIAL_STATE = {
@@ -26,7 +27,7 @@ export default function(state = INITIAL_STATE, action) {
         showDurationModal: true,
         routine: {
           ...state.routine,
-          exercises: [...state.routine.exercises, action.payload]
+          exercises: [...state.routine.exercises, {...action.payload}]
         }
       }
     case SET_DURATION:
@@ -63,6 +64,14 @@ export default function(state = INITIAL_STATE, action) {
         routine: {
           ...state.routine,
           name: action.payload
+        }
+      }
+    case UPDATE_EXERCISES:
+      return {
+        ...state,
+        routine: {
+          ...state.routine,
+          exercises: action.payload
         }
       }
     default:

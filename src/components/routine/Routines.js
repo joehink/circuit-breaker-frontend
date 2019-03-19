@@ -23,30 +23,36 @@ class Routines extends Component {
     }
   }
   renderRoutines = () => {
-    return this.props.routines.map(routine => {
-      return (
-        <div key={routine._id} className="routine-list-item">
-          <nav>
-            <h3 onClick={() => this.handleSetWorkout(routine)}>
-              { routine.name }
-            </h3>
-            <div className="routine-list-item-icons">
-              <i
-                onClick={() => this.setRoutineToDelete(routine)}
-                className="far fa-trash-alt"
-              ></i>
-              <i
-                onClick={() => this.handleEdit(routine)}
-                className="fas fa-pencil-alt"
-              ></i>
+    if (this.props.routines === null) {
+      return <div className="loader"></div>
+    } else if (this.props.routines.length < 1) {
+      return <p>No routines</p>
+    } else {
+      return this.props.routines.map(routine => {
+        return (
+          <div key={routine._id} className="routine-list-item">
+            <nav>
+              <h3 onClick={() => this.handleSetWorkout(routine)}>
+                { routine.name }
+              </h3>
+              <div className="routine-list-item-icons">
+                <i
+                  onClick={() => this.setRoutineToDelete(routine)}
+                  className="far fa-trash-alt"
+                ></i>
+                <i
+                  onClick={() => this.handleEdit(routine)}
+                  className="fas fa-pencil-alt"
+                ></i>
+              </div>
+            </nav>
+            <div className="routine-exercise-list">
+              { this.renderExercises(routine) }
             </div>
-          </nav>
-          <div className="routine-exercise-list">
-            { this.renderExercises(routine) }
           </div>
-        </div>
-      )
-    })
+        )
+      })
+    }
   }
   handleSetWorkout = (routine) => {
     this.props.setWorkout(routine);

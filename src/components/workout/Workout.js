@@ -95,10 +95,16 @@ class Workout extends Component {
   startOrPause = () => {
     if (this.props.workout.workoutInProgress) {
       return (
-        <button className="form-button" onClick={this.handlePause}>Pause</button>
+        <button className="form-button pause" onClick={this.handlePause}>
+          Pause
+        </button>
       )
     } else {
-      return <button className="form-button" onClick={ this.startTimer }>Start</button>
+      return (
+        <button className="form-button start" onClick={ this.startTimer }>
+          Start
+        </button>
+      )
     }
   }
   renderWorkout = () => {

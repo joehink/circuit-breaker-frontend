@@ -92,7 +92,7 @@ class CreateRoutine extends Component {
     this.setState({
       routine: {
         ...this.state.routine,
-        exercises: [...this.state.routine.exercises, exercise]
+        exercises: [...this.state.routine.exercises, { ...exercise }]
       },
       showDurationModal: true
     })
@@ -171,8 +171,8 @@ class CreateRoutine extends Component {
     }
 
     // filter out the currently dragged item
-    let selected = this.state.routine.exercises.filter(exercise => {
-      return exercise !== this.draggedItem
+    let selected = this.state.routine.exercises.filter((exercise) => {
+      return exercise !== this.draggedItem;
     });
 
     // add the dragged item after the dragged over item
@@ -211,7 +211,7 @@ class CreateRoutine extends Component {
           </div>
           { this.renderSave() }
           <button
-            className="form-button"
+            className="form-button start"
             onClick={this.handleStart}
             disabled={!this.state.routine.exercises.length}
           >

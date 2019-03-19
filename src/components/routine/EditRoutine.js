@@ -14,7 +14,8 @@ import {
   setDuration,
   removeExercise,
   handleChange,
-  updateRoutine
+  updateRoutine,
+  updateExercises
 } from "../../actions";
 
 class EditRoutine extends Component {
@@ -84,7 +85,7 @@ class EditRoutine extends Component {
   }
   onDragStart = (event, index) => {
     // set draggedItem equal to the exercise that is being dragged
-    this.draggedItem = this.state.routine.exercises[index];
+    this.draggedItem = this.props.editRoutine.routine.exercises[index];
     event.dataTransfer.effectAllowed = "move";
     event.dataTransfer.setData("text/html", event.target.parentNode);
     event.dataTransfer.setDragImage(event.target.parentNode, 100, 100);
@@ -98,19 +99,14 @@ class EditRoutine extends Component {
     }
 
     // filter out the currently dragged item
-    let selected = this.state.routine.exercises.filter(exercise => {
+    let selected = this.props.editRoutine.routine.exercises.filter(exercise => {
       return exercise !== this.draggedItem
     });
 
     // add the dragged item after the dragged over item
     selected.splice(index, 0, this.draggedItem);
 
-    this.setState({
-      routine: {
-        ...this.state.routine,
-        exercises: selected
-      }
-    });
+    this.props.updateExercises(selected)
   }
   onDragEnd = () => {
     this.draggedItem = null;
@@ -166,7 +162,8 @@ export default compose(
     setDuration,
     removeExercise,
     handleChange,
-    updateRoutine
+    updateRoutine,
+    updateExercises
   }),
   requireAuth
 )(EditRoutine);

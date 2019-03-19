@@ -4,7 +4,8 @@ import {
   SET_DURATION,
   REMOVE_EXERCISE,
   DURATION_CHANGE,
-  NAME_CHANGE
+  NAME_CHANGE,
+  UPDATE_EXERCISES
 } from "./types";
 
 export const setEditRoutine = (routine) => {
@@ -29,4 +30,8 @@ export const handleDurationChange = (event) => {
 
 export const handleChange = (event) => {
   return { type: NAME_CHANGE, payload: event.target.value }
+}
+
+export const updateExercises = (exercises) => {
+  return { type: UPDATE_EXERCISES, payload: exercises }
 }

@@ -25,3 +25,15 @@
 .form-button-group .form-button:last-of-type {
   margin-left: 10px;
 }
+
+.form-button.start {
+  background: green;
+}
+
+.form-button.stop {
+  background: red;
+}
+
+.form-button.pause {
+  background: goldenrod;
+}
