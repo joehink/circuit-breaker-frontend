@@ -1,6 +1,6 @@
 .workout {
   flex: 1;
-  overflow-y: scroll;
+  overflow-y: auto;
   .container {
     max-width: 800px;
   }
@@ -46,8 +46,8 @@
 
 .exercise-queue {
   display: flex;
-  overflow-x: scroll;
-  height: 65px;
+  overflow-x: auto;
+  align-items: flex-start;
   img {
     margin-right: 5px;
     border: 1px solid $light-gray;

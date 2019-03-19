@@ -5,7 +5,7 @@
  * 1. Correct the line height in all browsers.
  * 2. Prevent adjustments of font size after orientation changes in iOS.
  */
-@import url("https://fonts.googleapis.com/css?family=Bungee+Inline|Roboto");
+@import url("https://fonts.googleapis.com/css?family=Bungee+Inline|Roboto:400,700");
 html {
   line-height: 1.15;
   /* 1 */
@@ -330,7 +330,6 @@ h1 {
 
 h2 {
   margin: 50px 0 0;
-  font-weight: 400;
   padding-bottom: 0.5rem;
   border-bottom: 2px solid #C1C1C1; }
 
@@ -472,11 +471,11 @@ label {
 .landing {
   display: flex;
   flex: 1;
-  overflow-y: scroll; }
+  overflow-y: auto; }
 
 .routine-form {
   flex: 1;
-  overflow-y: scroll; }
+  overflow-y: auto; }
 
 .exercise-container {
   background: white;
@@ -524,7 +523,7 @@ label {
   transform: translateY(-100%); }
 
 .routine {
-  overflow-y: scroll; }
+  overflow-y: auto; }
 
 .routine-nav {
   display: flex;
@@ -565,7 +564,7 @@ label {
 
 .workout {
   flex: 1;
-  overflow-y: scroll; }
+  overflow-y: auto; }
   .workout .container {
     max-width: 800px; }
   .workout h2 {
@@ -601,8 +600,8 @@ label {
 
 .exercise-queue {
   display: flex;
-  overflow-x: scroll;
-  height: 65px; }
+  overflow-x: auto;
+  align-items: flex-start; }
   .exercise-queue img {
     margin-right: 5px;
     border: 1px solid #C1C1C1;
