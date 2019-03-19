@@ -15,7 +15,7 @@ export const signUp = (username, password, confirmation, history) => async dispa
       dispatch({ type: SIGN_UP_FAILURE, payload: "Password does not match confirmation" })
     } else {
       // make request to signUp new user
-      const res = await axios.post("http://localhost:4000/users", {
+      const res = await axios.post("https://ga-circuit-breaker-api.herokuapp.com/users", {
         username,
         password
       })
@@ -40,7 +40,7 @@ export const signOut = () => {
 export const signIn = (username, password, history) => async dispatch => {
   try {
     // make request to logIn as existing user
-    const res = await axios.post("http://localhost:4000/sessions", {
+    const res = await axios.post("https://ga-circuit-breaker-api.herokuapp.com/sessions", {
       username,
       password
     })

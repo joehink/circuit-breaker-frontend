@@ -10,7 +10,7 @@ import {
 export const createRoutine = (routine, jwt, history) => async dispatch => {
   const res = await axios({
     method: "POST",
-    url: "http://localhost:4000/routines",
+    url: "https://ga-circuit-breaker-api.herokuapp.com/routines",
     data: routine,
     headers: { authorization: jwt }
   });
@@ -21,7 +21,7 @@ export const createRoutine = (routine, jwt, history) => async dispatch => {
 export const updateRoutine = (routine, jwt, history) => async dispatch => {
   const res = await axios({
     method: "PUT",
-    url: `http://localhost:4000/routines/${routine._id}`,
+    url: `https://ga-circuit-breaker-api.herokuapp.com/routines/${routine._id}`,
     data: routine,
     headers: { authorization: jwt }
   });
@@ -32,7 +32,7 @@ export const updateRoutine = (routine, jwt, history) => async dispatch => {
 export const fetchRoutines = jwt => async dispatch => {
   const res = await axios({
     method: "GET",
-    url: "http://localhost:4000/routines",
+    url: "https://ga-circuit-breaker-api.herokuapp.com/routines",
     headers: { authorization: jwt }
   })
   dispatch({ type: FETCH_ROUTINES_SUCCESS, payload: res.data });
@@ -41,7 +41,7 @@ export const fetchRoutines = jwt => async dispatch => {
 export const deleteRoutine = (routineId, jwt) => async dispatch =>{
   await axios({
     method: "DELETE",
-    url: `http://localhost:4000/routines/${routineId}`,
+    url: `https://ga-circuit-breaker-api.herokuapp.com/routines/${routineId}`,
     headers: { authorization: jwt }
   })
   dispatch({ type: DELETE_ROUTINE_SUCCESS, payload: routineId });
