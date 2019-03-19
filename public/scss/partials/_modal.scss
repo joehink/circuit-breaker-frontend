@@ -15,11 +15,13 @@
   height: 300px;
   border-radius: 100%;
   box-shadow: 0 0 20px rgba(0,0,0,0.15);
-  border: 1px solid $light-gray;
+  border: 5px solid $dark-gray;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 50px;
+  text-align: center;
 }
 
 .modal form {

@@ -354,6 +354,18 @@ h2 {
 .fa-check {
   color: green; }
 
+.fa-trash-alt {
+  cursor: pointer; }
+
+.fa-trash-alt:hover {
+  color: red; }
+
+.fa-pencil-alt {
+  cursor: pointer; }
+
+.fa-pencil-alt:hover {
+  opacity: .5; }
+
 .auth-button {
   color: #454851;
   text-decoration: none;
@@ -397,11 +409,13 @@ h2 {
   height: 300px;
   border-radius: 100%;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-  border: 1px solid #C1C1C1;
+  border: 5px solid #454851;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center; }
+  align-items: center;
+  padding: 50px;
+  text-align: center; }
 
 .modal form {
   display: flex;
@@ -498,5 +512,45 @@ label {
   width: 100%;
   text-align: center;
   transform: translateY(-100%); }
+
+.routine {
+  overflow-y: scroll; }
+
+.routine-nav {
+  display: flex;
+  align-items: center;
+  margin: 50px 0 0;
+  border-bottom: 2px solid #C1C1C1;
+  padding: .5rem 0; }
+  .routine-nav h2 {
+    border-bottom: none;
+    margin: 0;
+    padding: 0; }
+  .routine-nav .form-button {
+    margin: 0 0 0 auto; }
+
+.routine-list-item {
+  background: #FDFBFB;
+  padding: 1rem;
+  margin-top: 1rem;
+  border: 2px solid #C1C1C1;
+  max-width: 600px; }
+  .routine-list-item h3 {
+    margin: 0 0 5px;
+    cursor: pointer; }
+  .routine-list-item h3:hover {
+    opacity: .5; }
+  .routine-list-item nav {
+    display: flex;
+    border-bottom: 1px solid #C1C1C1;
+    margin-bottom: 15px; }
+  .routine-list-item .routine-list-item-icons {
+    margin-left: auto; }
+  .routine-list-item i {
+    padding-left: 5px;
+    font-size: 1.15rem; }
+  .routine-list-item img {
+    border: 1px solid #C1C1C1;
+    margin-right: 2.5px; }
 
 /*# sourceMappingURL=styles.css.map */

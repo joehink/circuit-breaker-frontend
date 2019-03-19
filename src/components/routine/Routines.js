@@ -25,12 +25,12 @@ class Routines extends Component {
   renderRoutines = () => {
     return this.props.routines.map(routine => {
       return (
-        <div key={routine._id}>
+        <div key={routine._id} className="routine-list-item">
           <nav>
             <h3 onClick={() => this.handleSetWorkout(routine)}>
               { routine.name }
             </h3>
-            <div>
+            <div className="routine-list-item-icons">
               <i
                 onClick={() => this.setRoutineToDelete(routine)}
                 className="far fa-trash-alt"
@@ -41,7 +41,7 @@ class Routines extends Component {
               ></i>
             </div>
           </nav>
-          <div>
+          <div className="routine-exercise-list">
             { this.renderExercises(routine) }
           </div>
         </div>
@@ -96,13 +96,17 @@ class Routines extends Component {
   }
   render() {
     return (
-      <div>
-        Routines
-        <Link to="/create">Create a Routine</Link>
-        <div>
-          { this.renderRoutines() }
+      <div className="routine">
+        <div className="container">
+          <nav className="routine-nav">
+            <h2>Routines</h2>
+            <Link className="form-button" to="/create">Create a Routine</Link>
+          </nav>
+          <div>
+            { this.renderRoutines() }
+          </div>
+          { this.renderDeleteModal() }
         </div>
-        { this.renderDeleteModal() }
       </div>
     )
   }

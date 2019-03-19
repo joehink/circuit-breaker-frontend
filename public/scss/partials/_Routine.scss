@@ -1,0 +1,50 @@
+.routine {
+  overflow-y: scroll;
+}
+
+.routine-nav {
+  display: flex;
+  align-items: center;
+  margin: 50px 0 0;
+  border-bottom: 2px solid $light-gray;
+  padding: .5rem 0;
+  h2 {
+    border-bottom: none;
+    margin: 0;
+    padding: 0
+  }
+  .form-button {
+    margin: 0 0 0 auto;
+  }
+}
+
+.routine-list-item {
+  background: $white;
+  padding: 1rem;
+  margin-top: 1rem;
+  border: 2px solid $light-gray;
+  max-width: 600px;
+  h3 {
+    margin: 0 0 5px;
+    cursor: pointer;
+  }
+  h3:hover {
+    opacity: .5;
+  }
+  nav {
+    display: flex;
+    border-bottom: 1px solid $light-gray;
+    margin-bottom: 15px;
+  }
+  .routine-list-item-icons {
+    margin-left: auto;
+  }
+  i {
+    padding-left: 5px;
+    font-size: 1.15rem;
+  }
+  img {
+    border: 1px solid $light-gray;
+    margin-right: 2.5px;
+  }
+}
