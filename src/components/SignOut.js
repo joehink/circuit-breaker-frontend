@@ -11,7 +11,7 @@ class SignOut extends Component {
     return (
       <div style={{ display: "flex", flex: 1 }}>
         <div className="modal">
-          <i class="fas fa-running"></i>
+          <i className="fas fa-running"></i>
           <h1 style={{ marginTop: "15px" }}>Goodbye!</h1>
         </div>
       </div>
