@@ -9,6 +9,7 @@ export const PAUSE_WORKOUT = "PAUSE_WORKOUT";
 export const CHANGE_REPS = "CHANGE_REPS";
 export const SET_REPS = "SET_REPS";
 export const INCREMENT_REP_COUNT = "INCREMENT_REP_COUNT";
+export const SHOW_REP_MODAL = "SHOW_REP_MODAL";
 
 
 export const SIGN_UP = "SIGN_UP";

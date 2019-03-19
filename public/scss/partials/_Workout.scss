@@ -1,0 +1,79 @@
+.workout {
+  flex: 1;
+  overflow-y: scroll;
+  .container {
+    max-width: 800px;
+  }
+  h2 {
+    border: none;
+  }
+  .workout-content {
+    display: flex;
+  }
+  .current-exercise-image {
+    border: 2px solid $light-gray;
+    width: 100%;
+  }
+  .exercise-info {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    h3 {
+      margin: 0;
+      border-bottom: 2px solid $light-gray;
+      padding: 0 0 .5rem 1rem;
+    }
+  }
+  .workout-exercises {
+    width: 50%;
+  }
+}
+
+.timer {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  span {
+    font-size: 100px;
+    display: block;
+    text-align: center;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.exercise-queue {
+  display: flex;
+  overflow-x: scroll;
+  height: 65px;
+  img {
+    margin-right: 5px;
+    border: 1px solid $light-gray;
+    opacity: .5;
+  }
+  .current {
+    opacity: 1;
+    border-color: green;
+  }
+}
+
+@media(max-width: $sm) {
+  .workout {
+    .workout-content {
+      flex-direction: column-reverse;
+    }
+    .workout-exercises {
+      width: 100%;
+      margin-top: 25px;
+    }
+    .exercise-info {
+      width: 100%;
+      h3 {
+        padding-left: 0;
+      }
+    }
+
+  }
+}

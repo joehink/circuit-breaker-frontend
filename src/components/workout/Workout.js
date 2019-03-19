@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 import CompletedModal from "./CompletedModal";
 import RepModal from "./RepModal";
@@ -15,7 +16,8 @@ import {
   pauseWorkout,
   setReps,
   repsChange,
-  incrementRepCount
+  incrementRepCount,
+  showRepModal
 } from "../../actions";
 
 class Workout extends Component {
@@ -30,13 +32,17 @@ class Workout extends Component {
       if ((timer < 1) && (exerciseIndex < exercises.length - 1)) {
         // increment index to next exercise
         this.props.incrementIndex();
+        this[`exercise${exerciseIndex + 1}`].scrollIntoView();
+        this.bell.play();
       } else if (timer < 1 && repCount >= reps) {
         // if the timer is less than one is there is no next exercise
         // clear the timer interval
         clearInterval(this.exerciseTimer);
+        this.bell.play();
         this.props.workoutCompleted()
       } else if (timer < 1) {
         this.props.incrementRepCount();
+        this.bell.play();
       } else {
         // take one second off the timer
         this.props.decrementTimer();
@@ -72,6 +78,8 @@ class Workout extends Component {
           src={exercise.image}
           alt={exercise.name}
           width="50"
+          ref={(ref) => {this[`exercise${index}`] = ref}}
+          className={index === this.props.workout.exerciseIndex ? "current" : ""}
         />
       )
     })
@@ -87,10 +95,10 @@ class Workout extends Component {
   startOrPause = () => {
     if (this.props.workout.workoutInProgress) {
       return (
-        <button onClick={this.handlePause}>Pause</button>
+        <button className="form-button" onClick={this.handlePause}>Pause</button>
       )
     } else {
-      return <button onClick={ this.startTimer }>Start</button>
+      return <button className="form-button" onClick={ this.startTimer }>Start</button>
     }
   }
   renderWorkout = () => {
@@ -99,37 +107,42 @@ class Workout extends Component {
     if (workout.name) {
       // render workout
       return (
-        <div>
-          <h2>{ workout.name }</h2>
-          <div>
-            <div>
-              <img
-                src={workout.exercises[workout.exerciseIndex].image}
-                alt={workout.exercises[workout.exerciseIndex].name}
-                width="400"
-              />
-              <div>
-                { this.renderExercises() }
+        <div className="workout">
+          <div className="container">
+            <h2>{ workout.name }</h2>
+            <div className="workout-content">
+              <div className="workout-exercises">
+                <img
+                  src={workout.exercises[workout.exerciseIndex].image}
+                  alt={workout.exercises[workout.exerciseIndex].name}
+                  className="current-exercise-image"
+                />
+                <div className="exercise-queue">
+                  { this.renderExercises() }
+                </div>
+              </div>
+              <div className="exercise-info">
+                <h3>{ workout.exercises[workout.exerciseIndex].name }</h3>
+                <div className="timer">
+                  <span>{ workout.timer }</span>
+                  <div className="form-button-group">
+                    { this.startOrPause() }
+                    <button className="form-button" onClick={this.handleReset}>Reset</button>
+                  </div>
+                </div>
               </div>
             </div>
-            <div>
-              <h3>{ workout.exercises[workout.exerciseIndex].name }</h3>
-              <span>{ workout.timer }</span>
-              { this.startOrPause() }
-              <button onClick={this.handleReset}>Reset</button>
-              { this.renderCompletedModal() }
-              { this.renderRepModal() }
-            </div>
           </div>
+          <audio ref={(input) => {this.bell = input}} src="audio/Bell.mp3"/>
+          { this.renderCompletedModal() }
+          { this.renderRepModal() }
         </div>
       )
     } else {
       // workout does not have a name
       // prompt the user to create a routine
       return (
-        <div>
-          make routine
-        </div>
+        <Redirect to="/routines" />
       )
     }
   }
@@ -138,6 +151,7 @@ class Workout extends Component {
       clearInterval(this.exerciseTimer);
       this.props.pauseWorkout()
     }
+    this.props.showRepModal();
   }
   render() {
     return this.renderWorkout()
@@ -160,5 +174,6 @@ export default connect(
   pauseWorkout,
   setReps,
   repsChange,
-  incrementRepCount
+  incrementRepCount,
+  showRepModal
 })(Workout);

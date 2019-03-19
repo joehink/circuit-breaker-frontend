@@ -7,16 +7,17 @@ class RepModal extends Component {
   }
   render() {
     return (
-      <div>
-        <div>
+      <div className="modal-wrapper">
+        <div className="modal">
           <h3>How many reps?</h3>
           <form onSubmit={this.handleSubmit}>
             <input
               type="number"
               value={this.props.reps}
               onChange={this.props.repsChange}
+              className="form-input"
             />
-            <input type="submit" />
+            <input className="form-button" type="submit" />
           </form>
         </div>
       </div>

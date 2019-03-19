@@ -30,6 +30,10 @@
   align-items: center;
 }
 
+.modal .form-button:even {
+  margin-top: 0;
+}
+
 @media(min-width: $sm) {
   .modal {
     width: 400px;

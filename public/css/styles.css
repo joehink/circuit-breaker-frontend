@@ -384,14 +384,21 @@ h2 {
   text-decoration: none;
   cursor: pointer;
   margin-top: 1.5rem;
-  outline: none;
-  display: block; }
+  outline: none; }
 
 .form-button:hover {
   opacity: .75; }
 
 .form-button:disabled {
   opacity: .75; }
+
+.form-button-group {
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+.form-button-group .form-button:last-of-type {
+  margin-left: 10px; }
 
 .modal-wrapper {
   display: flex;
@@ -421,6 +428,9 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: center; }
+
+.modal .form-button:even {
+  margin-top: 0; }
 
 @media (min-width: 576px) {
   .modal {
@@ -551,6 +561,65 @@ label {
     font-size: 1.15rem; }
   .routine-list-item img {
     border: 1px solid #C1C1C1;
-    margin-right: 2.5px; }
+    margin-right: 5px; }
+
+.workout {
+  flex: 1;
+  overflow-y: scroll; }
+  .workout .container {
+    max-width: 800px; }
+  .workout h2 {
+    border: none; }
+  .workout .workout-content {
+    display: flex; }
+  .workout .current-exercise-image {
+    border: 2px solid #C1C1C1;
+    width: 100%; }
+  .workout .exercise-info {
+    display: flex;
+    flex-direction: column;
+    width: 50%; }
+    .workout .exercise-info h3 {
+      margin: 0;
+      border-bottom: 2px solid #C1C1C1;
+      padding: 0 0 .5rem 1rem; }
+  .workout .workout-exercises {
+    width: 50%; }
+
+.timer {
+  display: flex;
+  flex-direction: column;
+  flex: 1; }
+  .timer span {
+    font-size: 100px;
+    display: block;
+    text-align: center;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+
+.exercise-queue {
+  display: flex;
+  overflow-x: scroll;
+  height: 65px; }
+  .exercise-queue img {
+    margin-right: 5px;
+    border: 1px solid #C1C1C1;
+    opacity: .5; }
+  .exercise-queue .current {
+    opacity: 1;
+    border-color: green; }
+
+@media (max-width: 576px) {
+  .workout .workout-content {
+    flex-direction: column-reverse; }
+  .workout .workout-exercises {
+    width: 100%;
+    margin-top: 25px; }
+  .workout .exercise-info {
+    width: 100%; }
+    .workout .exercise-info h3 {
+      padding-left: 0; } }
 
 /*# sourceMappingURL=styles.css.map */

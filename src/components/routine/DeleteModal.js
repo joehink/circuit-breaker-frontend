@@ -11,14 +11,16 @@ class DeleteModal extends Component {
         <div className="modal">
           <h3>Are you sure you want to delete "{this.props.routine.name}"?</h3>
           <form onSubmit={this.handleSubmit}>
-            <button
-              type="button"
-              onClick={this.props.hideDeleteModal}
-              className="form-button"
-            >
-              Cancel
-            </button>
-            <input type="submit" className="form-button" value="Delete" />
+            <div className="form-button-group">
+              <button
+                type="button"
+                onClick={this.props.hideDeleteModal}
+                className="form-button"
+              >
+                Cancel
+              </button>
+              <input type="submit" className="form-button" value="Delete" />
+            </div>
           </form>
         </div>
       </div>

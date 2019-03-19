@@ -9,7 +9,8 @@ import {
   PAUSE_WORKOUT,
   CHANGE_REPS,
   SET_REPS,
-  INCREMENT_REP_COUNT
+  INCREMENT_REP_COUNT,
+  SHOW_REP_MODAL
 } from "./types";
 
 
@@ -54,4 +55,8 @@ export const setReps = () => {
 
 export const incrementRepCount = () => {
   return { type: INCREMENT_REP_COUNT }
+}
+
+export const showRepModal = () => {
+  return { type: SHOW_REP_MODAL }
 }

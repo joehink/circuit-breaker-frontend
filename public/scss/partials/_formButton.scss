@@ -6,7 +6,6 @@
   cursor: pointer;
   margin-top: 1.5rem;
   outline: none;
-  display: block;
 }
 
 .form-button:hover {
@@ -15,4 +14,14 @@
 
 .form-button:disabled {
   opacity: .75;
+}
+
+.form-button-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-button-group .form-button:last-of-type {
+  margin-left: 10px;
 }

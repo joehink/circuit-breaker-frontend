@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
 import MainNav from "./components/MainNav";
@@ -13,12 +13,19 @@ import EditRoutine from "./components/routine/EditRoutine";
 import Routines from "./components/routine/Routines";
 
 class App extends Component {
+  landingOrRoutines = (props) => {
+    if (this.props.auth.authenticated) {
+      return <Redirect to="/routines" />
+    } else {
+      return <Landing {...props} />
+    }
+  }
   render() {
     return (
       <Router>
         <Fragment>
           <MainNav />
-          <Route exact path="/" component={Landing} />
+          <Route exact path="/" render={this.landingOrRoutines}/>
           <Route exact path="/routines" component={Routines} />
           <Route exact path="/create" component={CreateRoutine} />
           <Route exact path="/edit" component={EditRoutine} />

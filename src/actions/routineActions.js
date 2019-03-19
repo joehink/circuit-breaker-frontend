@@ -15,6 +15,7 @@ export const createRoutine = (routine, jwt, history) => async dispatch => {
     headers: { authorization: jwt }
   });
   dispatch({ type: CREATE_NEW_ROUTINE_SUCCESS, payload: res.data });
+  history.push('/');
 }
 
 export const updateRoutine = (routine, jwt, history) => async dispatch => {

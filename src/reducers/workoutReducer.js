@@ -9,7 +9,8 @@ import {
   PAUSE_WORKOUT,
   CHANGE_REPS,
   SET_REPS,
-  INCREMENT_REP_COUNT
+  INCREMENT_REP_COUNT,
+  SHOW_REP_MODAL
 } from "../actions/types";
 
 const INITIAL_STATE = {
@@ -87,6 +88,11 @@ export default function(state = INITIAL_STATE, action) {
         repCount: state.repCount + 1,
         exerciseIndex: 0,
         timer: state.exercises[0].duration
+      }
+    case SHOW_REP_MODAL:
+      return {
+        ...state,
+        showRepModal: true
       }
     default:
       return state;
