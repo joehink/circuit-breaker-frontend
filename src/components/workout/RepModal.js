@@ -15,6 +15,7 @@ class RepModal extends Component {
             <input
               type="number"
               value={this.props.reps}
+              min="1"
               onChange={this.props.repsChange}
               className="form-input"
             />

@@ -17,6 +17,7 @@ class DurationModal extends Component {
             <input
               type="number"
               value={this.props.duration}
+              min="1"
               onChange={this.props.handleDurationChange}
               className="form-input"
             />
