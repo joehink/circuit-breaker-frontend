@@ -14,7 +14,7 @@ class Landing extends Component {
             Create a Routine
           </Link>
         </div>
-        <video src="video/videoBackground.mp4" type="video/mp4" muted autoPlay loop id="videoBackground" />
+        <video src="video/videobackground.mp4" type="video/mp4" muted autoPlay loop id="videoBackground" />
       </div>
     )
   }
