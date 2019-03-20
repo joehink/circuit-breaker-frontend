@@ -1,68 +1,35 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Circuit Breaker
 
-## Available Scripts
+Circuit Breaker is a web application designed to walk you through your circuit training routine.
 
-In the project directory, you can run:
+## Getting Started
 
-### `npm start`
+Link to live site: https://ga-circuit-breaker.herokuapp.com/
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Features
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+#### Routines
 
-### `npm test`
+<kbd>
+<img src="public/images/screenshots/routines.png" width="600" />
+</kbd>
+<br />
+<br />
+When you create a routine, you first give it a name and then choose exercises that you want to do during your routine. When you select an exercise, a modal will pop up that allows you to select the duration of that exercise. After you've selected all of the exercises that you'd like to do in your routine, you can either save the routine if you're logged in or you can start the routine immediately without saving it.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### Workout
+<kbd>
+<img src="public/images/screenshots/workout.png" width="600" />
+</kbd>
+<br />
+<br />
+When you click on a saved routine or hit "Start Routine" after creating one, you will be taken to the workout screen. When the workout screen first loads, a modal will appear and ask how many reps you would like to do. The number you enter will determine how many times you will repeat the routine. After each exercise is completed a bell will ding, signaling to you that it is time to switch to the next exercise. When all of the exercises are completed a modal will appear saying that the workout is over and will ask if you are done or would like to go again.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+## Technologies Used
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+  1. Used [React](https://reactjs.org/) for the front end.
+  2. Used [MongoDB](https://www.mongodb.com/) to store users and routines.
+  3. Used [Node](https://nodejs.org/en/) and [Express](https://expressjs.com/) for the back end API.
+  4. Used [Font Awesome](https://fontawesome.com/) for icons.
