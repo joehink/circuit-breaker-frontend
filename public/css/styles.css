@@ -371,6 +371,9 @@ h2 {
 .fa-running {
   font-size: 125px; }
 
+@media (max-width: 576px) {
+  .fa-clock, .fa-dumbbell, .fa-flag-checkered, .fa-question-circle {
+    font-size: 50px; } }
 .auth-button {
   color: #454851;
   text-decoration: none;
@@ -435,7 +438,7 @@ h2 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 50px;
+  padding: 0 50px;
   text-align: center; }
 
 .modal form {
@@ -516,7 +519,8 @@ label {
     display: none; } }
 .routine-form {
   flex: 1;
-  overflow-y: auto; }
+  overflow-y: auto;
+  padding-bottom: 50px; }
 
 .exercise-container {
   background: white;
@@ -564,7 +568,8 @@ label {
   transform: translateY(-100%); }
 
 .routine {
-  overflow-y: auto; }
+  overflow-y: auto;
+  padding-bottom: 50px; }
 
 .routine-nav {
   display: flex;
@@ -605,7 +610,8 @@ label {
 
 .workout {
   flex: 1;
-  overflow-y: auto; }
+  overflow-y: auto;
+  padding-bottom: 50px; }
   .workout .container {
     max-width: 800px; }
   .workout h2 {
@@ -623,6 +629,10 @@ label {
       margin: 0;
       border-bottom: 2px solid #C1C1C1;
       padding: 0 0 .5rem 1rem; }
+    .workout .exercise-info h4 {
+      text-align: right;
+      margin: 0;
+      padding: .5rem 0 0 1rem; }
   .workout .workout-exercises {
     width: 50%; }
 

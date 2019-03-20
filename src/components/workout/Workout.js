@@ -32,7 +32,9 @@ class Workout extends Component {
       if ((timer < 1) && (exerciseIndex < exercises.length - 1)) {
         // increment index to next exercise
         this.props.incrementIndex();
-        this[`exercise${exerciseIndex + 1}`].scrollIntoView();
+        if (window.innerWidth > 768) {
+          this[`exercise${exerciseIndex + 1}`].scrollIntoView();
+        }
         this.bell.play();
       } else if (timer < 1 && repCount >= reps) {
         // if the timer is less than one is there is no next exercise
@@ -129,6 +131,7 @@ class Workout extends Component {
               </div>
               <div className="exercise-info">
                 <h3>{ workout.exercises[workout.exerciseIndex].name }</h3>
+                <h4>Rep: { this.props.workout.repCount }</h4>
                 <div className="timer">
                   <span>{ workout.timer }</span>
                   <div className="form-button-group">
@@ -158,6 +161,7 @@ class Workout extends Component {
       this.props.pauseWorkout()
     }
     this.props.showRepModal();
+    this.props.resetCurrentWorkout();
   }
   render() {
     return this.renderWorkout()

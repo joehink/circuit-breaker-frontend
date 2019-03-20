@@ -33,3 +33,9 @@
 .fa-running {
   font-size: 125px;
 }
+
+@media(max-width: $sm) {
+  .fa-clock, .fa-dumbbell, .fa-flag-checkered, .fa-question-circle {
+    font-size: 50px;
+  }
+}
