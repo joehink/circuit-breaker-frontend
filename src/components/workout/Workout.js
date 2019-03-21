@@ -161,7 +161,7 @@ class Workout extends Component {
       this.props.pauseWorkout()
     }
     this.props.showRepModal();
-    this.props.resetCurrentWorkout();
+    this.props.clearWorkout();
   }
   render() {
     return this.renderWorkout()
