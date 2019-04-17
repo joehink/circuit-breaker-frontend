@@ -48,6 +48,7 @@ export default function(state = INITIAL_STATE, action) {
       return {
         ...state,
         workoutOver: true,
+        workoutInProgress: false
       }
     case CLEAR_WORKOUT:
       return {
