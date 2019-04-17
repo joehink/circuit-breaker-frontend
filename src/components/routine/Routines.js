@@ -64,7 +64,7 @@ class Routines extends Component {
         <img
           key={index}
           width="50"
-          src={exercise.image}
+          src={exercise.images.still.sm}
           alt={exercise.name}
         />
       )

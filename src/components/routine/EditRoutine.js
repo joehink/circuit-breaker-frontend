@@ -19,6 +19,12 @@ import {
 } from "../../actions";
 
 class EditRoutine extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      hoverIndex: null
+    }
+  }
   renderExercises = () =>  {
     // map through imported exercises array
     return exercises.map((exercise, index) => {
@@ -27,10 +33,12 @@ class EditRoutine extends Component {
         <div
           key={index}
           onClick={() => this.props.selectExercise(exercise)}
+          onMouseOver={() => this.setState({ hoverIndex: index })}
+          onMouseOut={() => this.setState({ hoverIndex: null })}
           className="exercise"
         >
           <img
-            src={exercise.image}
+            src={this.state.hoverIndex === index ? exercise.images.animated.med : exercise.images.still.med}
             alt={exercise.name}
             width="150"
           />
@@ -58,7 +66,7 @@ class EditRoutine extends Component {
               onDragStart={e => this.onDragStart(e, index)}
               onDragEnd={this.onDragEnd}
               draggable
-              src={exercise.image}
+              src={exercise.images.animated.med}
               alt={exercise.name}
               width="150"
             />

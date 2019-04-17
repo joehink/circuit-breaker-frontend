@@ -15,7 +15,8 @@ class CreateRoutine extends Component {
         name: "New Routine"
       },
       durationToSet: 30,
-      showDurationModal: false
+      showDurationModal: false,
+      hoverIndex: null
     }
   }
   renderExercises = () =>  {
@@ -26,10 +27,12 @@ class CreateRoutine extends Component {
         <div
           key={index}
           onClick={() => this.selectExercise(exercise)}
+          onMouseOver={() => this.setState({ hoverIndex: index })}
+          onMouseOut={() => this.setState({ hoverIndex: null })}
           className="exercise"
         >
           <img
-            src={exercise.image}
+            src={this.state.hoverIndex === index ? exercise.images.animated.med : exercise.images.still.med}
             alt={exercise.name}
             width="150"
           />
@@ -57,7 +60,7 @@ class CreateRoutine extends Component {
               onDragStart={e => this.onDragStart(e, index)}
               onDragEnd={this.onDragEnd}
               draggable
-              src={exercise.image}
+              src={exercise.images.animated.med}
               alt={exercise.name}
               width="150"
             />

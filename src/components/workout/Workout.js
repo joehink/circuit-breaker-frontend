@@ -77,7 +77,7 @@ class Workout extends Component {
       return (
         <img
           key={index}
-          src={exercise.image}
+          src={exercise.images.still.sm}
           alt={exercise.name}
           width="50"
           ref={(ref) => {this[`exercise${index}`] = ref}}
@@ -121,7 +121,7 @@ class Workout extends Component {
             <div className="workout-content">
               <div className="workout-exercises">
                 <img
-                  src={workout.exercises[workout.exerciseIndex].image}
+                  src={this.props.workout.workoutInProgress ? workout.exercises[workout.exerciseIndex].images.animated.lrg : workout.exercises[workout.exerciseIndex].images.still.lrg}
                   alt={workout.exercises[workout.exerciseIndex].name}
                   className="current-exercise-image"
                 />
